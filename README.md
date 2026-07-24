@@ -4,8 +4,9 @@
 > **Windows (winget) / macOS (Homebrew / brew) 両対応**
 
 ![Stack](https://img.shields.io/badge/Framework-Tauri%20%2B%20React-6366f1)
-![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-06b6d4)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-06b6d4)
 ![Persistence](https://img.shields.io/badge/Storage-In--Memory%20Only-f59e0b)
+![Codespaces](https://img.shields.io/badge/GitHub-Codespaces%20Ready-22c55e)
 
 ---
 
@@ -24,56 +25,47 @@
 
 ---
 
+## ☁️ GitHub Codespaces での利用・確認
+
+プロジェクトに [`.devcontainer/devcontainer.json`](file:///e:/work/simple-tools/.devcontainer/devcontainer.json) を準備済みのため、GitHub上で **「Open with Codespaces」** をクリックするだけで環境が自動構築されます。
+
+### 1. 画面の確認 (Web UI)
+Codespaces 起動後、ターミナルで以下を実行します：
+```bash
+npm run dev
+```
+ポート `1420` が自動転送され、ブラウザの別タブで実際の画面と動作をテスト確認できます。
+
+### 2. コンパイル・ビルドテスト
+Codespaces (Linuxコンテナ) 上で Linux 用バイナリをビルド：
+```bash
+npm run tauri build
+```
+
+### 3. Windows (`.exe` / `.msi`) や Mac (`.dmg`) の全自動ビルド
+GitHub にプッシュすると、同梱の [`.github/workflows/build.yml`](file:///e:/work/simple-tools/.github/workflows/build.yml) により、GitHub Actions 上で Windows / Mac / Linux のインストーラーが自動並列ビルドされます。
+
+---
+
 ## 📦 インストール方法 (Package Managers)
 
 ### 🪟 Windows (`winget`)
-マニフェスト登録後、以下のコマンドでインストールできます：
-
 ```powershell
 winget install InMemMemo.InMemScratchpad
 ```
-
-ローカルマニフェストから直接テストする場合:
+ローカルマニフェスト直接テスト:
 ```powershell
 winget install --manifest packaging/winget/inmem-memo.yaml
 ```
 
 ### 🍎 macOS (`brew`)
-Homebrew Tap 経由でインストール：
-
 ```bash
 brew install --cask your-org/tap/inmem-memo
 ```
-
-ローカル Cask 定義からテストする場合:
+ローカル Cask 定義直接テスト:
 ```bash
 brew install --cask packaging/brew/inmem-memo.rb
 ```
-
----
-
-## 🛠 ローカル開発 & ビルド手順
-
-### 前提条件
-- **Node.js**: v18+
-- **Rust**: v1.70+ (Tauriのビルドに必要なツールチェーン)
-
-### 開発サーバー起動
-```bash
-npm install
-npm run dev
-```
-
-Tauriネイティブアプリとして開発起動：
-```bash
-npm run tauri dev
-```
-
-### アプリのパッケージング (Windows .exe / macOS .dmg)
-```bash
-npm run tauri build
-```
-ビルド成果物は `src-tauri/target/release/bundle/` に出力されます。
 
 ---
 
