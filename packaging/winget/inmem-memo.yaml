@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.version.1.6.0.schema.json
+PackageIdentifier: InMemMemo.InMemScratchpad
+PackageVersion: 1.0.0
+DefaultLocale: ja-JP
+ManifestType: version
+ManifestVersion: 1.6.0
+---
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.6.0.schema.json
+PackageIdentifier: InMemMemo.InMemScratchpad
+PackageVersion: 1.0.0
+MinimumOSVersion: 10.0.0.0
+Installers:
+  - Architecture: x64
+    InstallerType: nullsoft
+    InstallerUrl: https://github.com/your-org/inmem-memo/releases/download/v1.0.0/inmem-memo_1.0.0_x64-setup.exe
+    InstallerSha256: 0000000000000000000000000000000000000000000000000000000000000000
+    Scope: user
+ManifestType: installer
+ManifestVersion: 1.6.0
+---
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.locale.ja-JP.1.6.0.schema.json
+PackageIdentifier: InMemMemo.InMemScratchpad
+PackageVersion: 1.0.0
+PackageLocale: ja-JP
+Publisher: Antigravity
+PublisherUrl: https://github.com/your-org/inmem-memo
+Author: Antigravity
+PackageName: InMem Scratchpad
+PackageUrl: https://github.com/your-org/inmem-memo
+License: MIT
+Copyright: Copyright (c) 2026 Antigravity
+ShortDescription: 起動時のみメモをメモリ保存する超高速スクラッチパッドアプリ
+Description: |
+  WindowsおよびmacOSで動作する、極めて軽量で起動の速いインメモリメモアプリです。
+  ファイルやデータベースへの自動書き込みを一切行わず、プロセス実行中のみメモをメモリ空間で保持します。
+Tags:
+  - memo
+  - scratchpad
+  - in-memory
+  - tauri
+  - markdown
+ManifestType: defaultLocale
+ManifestVersion: 1.6.0
