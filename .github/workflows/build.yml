@@ -1,4 +1,4 @@
-name: Build & Release Tauri App
+name: Build & Release Tauri v2 App
 
 on:
   push:
@@ -24,16 +24,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Install dependencies (Ubuntu only)
+      - name: Install dependencies (Ubuntu only for Tauri v2)
         if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.0-dev build-essential curl wget file libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libsoup-3.0-dev build-essential curl wget file libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
 
       - name: Install app dependencies
         run: npm install
@@ -45,6 +45,6 @@ jobs:
         with:
           tagName: v__VERSION__
           releaseName: 'InMem Scratchpad v__VERSION__'
-          releaseBody: 'Automatic build for Windows, macOS, and Linux.'
+          releaseBody: 'Automatic build for Windows, macOS, and Linux using Tauri v2.'
           releaseDraft: true
           prerelease: false

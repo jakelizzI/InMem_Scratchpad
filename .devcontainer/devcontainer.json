@@ -1,5 +1,5 @@
 {
-  "name": "InMem Scratchpad DevContainer",
+  "name": "InMem Scratchpad DevContainer (Tauri v2)",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
@@ -9,8 +9,8 @@
       "version": "latest"
     }
   },
-  // Install Linux dependencies required for Tauri / WebKitGTK
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.0-dev build-essential curl wget file libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev && npm install",
+  // Install Linux dependencies required for Tauri v2
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libsoup-3.0-dev build-essential curl wget file libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev && npm install",
   "forwardPorts": [1420],
   "portsAttributes": {
     "1420": {
@@ -23,7 +23,8 @@
       "extensions": [
         "rust-lang.rust-analyzer",
         "tamasfe.even-better-toml",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "tauri-apps.tauri-vscode"
       ]
     }
   }
