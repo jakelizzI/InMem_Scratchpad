@@ -12,6 +12,7 @@
   "app": {
     "windows": [
       {
+        "label": "main",
         "title": "InMem Scratchpad",
         "width": 780,
         "height": 600,
