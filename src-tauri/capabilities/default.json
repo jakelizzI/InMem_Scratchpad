@@ -1,9 +1,10 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "identifier": "default",
-  "description": "Default capabilities for InMem Scratchpad app",
+  "description": "Default capabilities for InMem Scratchpad app with tray and global shortcut",
   "windows": ["main"],
   "permissions": [
-    "core:default"
+    "core:default",
+    "global-shortcut:default"
   ]
 }

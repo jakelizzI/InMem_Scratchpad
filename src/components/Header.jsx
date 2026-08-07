@@ -6,7 +6,7 @@ import {
   Download, 
   Eye, 
   Edit3, 
-  ShieldAlert 
+  Command
 } from 'lucide-react';
 
 export default function Header({ 
@@ -26,6 +26,10 @@ export default function Header({
         <div className="badge-inmemory" title="アプリを終了するとメモデータは自動的にメモリから破棄されます">
           <span className="badge-dot"></span>
           In-Memory Only
+        </div>
+        <div className="badge-shortcut" title="グローバルショートカットキーで瞬時に呼び出し/非表示">
+          <Command size={11} />
+          <span>Ctrl+Shift+M</span>
         </div>
       </div>
 
