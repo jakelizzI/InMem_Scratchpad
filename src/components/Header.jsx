@@ -1,12 +1,14 @@
 import React from 'react';
+import brandLogoImg from '../assets/icon.png';
 import { 
-  Zap, 
   Copy, 
   Trash2, 
   Download, 
   Eye, 
   Edit3, 
-  Command
+  Settings,
+  Undo2,
+  Redo2
 } from 'lucide-react';
 
 export default function Header({ 
@@ -14,27 +16,52 @@ export default function Header({
   setIsPreview, 
   onCopy, 
   onClear, 
-  onExport 
+  onExport, 
+  onOpenSettings,
+  onUndo,
+  onRedo,
+  canUndo,
+  canRedo
 }) {
   return (
     <header className="app-header">
       <div className="brand-section">
-        <div className="brand-icon">
-          <Zap size={16} />
+        <div className="brand-icon-wrapper">
+          <img 
+            src={brandLogoImg} 
+            alt="InMem Scratchpad Icon" 
+            className="brand-app-icon"
+          />
         </div>
         <span className="brand-title">InMem Scratchpad</span>
         <div className="badge-inmemory" title="アプリを終了するとメモデータは自動的にメモリから破棄されます">
           <span className="badge-dot"></span>
           In-Memory Only
         </div>
-        <div className="badge-shortcut" title="グローバルショートカットキーで瞬時に呼び出し/非表示">
-          <Command size={11} />
-          <span>Ctrl+Shift+M</span>
-        </div>
       </div>
 
       <div className="header-actions">
-        {/* Toggle Mode */}
+        {/* Undo / Redo Controls */}
+        <div className="undo-redo-group">
+          <button 
+            className="btn btn-icon-only" 
+            onClick={onUndo}
+            disabled={!canUndo}
+            title="元に戻す (Ctrl+Z)"
+          >
+            <Undo2 size={14} />
+          </button>
+          <button 
+            className="btn btn-icon-only" 
+            onClick={onRedo}
+            disabled={!canRedo}
+            title="やり直す (Ctrl+Y)"
+          >
+            <Redo2 size={14} />
+          </button>
+        </div>
+
+        {/* Toggle Edit / Markdown Preview */}
         <button 
           className={`btn ${isPreview ? 'btn-toggle active' : 'btn'}`}
           onClick={() => setIsPreview(!isPreview)}
@@ -57,9 +84,19 @@ export default function Header({
         </button>
 
         {/* Clear Memo */}
-        <button className="btn btn-danger" onClick={onClear} title="メモをクリア">
+        <button className="btn btn-danger" onClick={onClear} title="メモをクリア (Ctrl+Zで復元可能)">
           <Trash2 size={14} />
           <span>Clear</span>
+        </button>
+
+        {/* Settings Gear Button */}
+        <button 
+          className="btn btn-settings" 
+          onClick={onOpenSettings} 
+          title="設定を開く"
+        >
+          <Settings size={15} />
+          <span>設定</span>
         </button>
       </div>
     </header>

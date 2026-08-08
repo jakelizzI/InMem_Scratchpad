@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { marked } from 'marked';
 
-export default function Scratchpad({ text, setText, isPreview }) {
+export default function Scratchpad({ text, setText, isPreview, tabSize = 2, wordWrap = true }) {
   const textareaRef = useRef(null);
 
   // Auto focus on mount
@@ -11,19 +11,20 @@ export default function Scratchpad({ text, setText, isPreview }) {
     }
   }, [isPreview]);
 
-  // Handle Tab key in editor
+  // Handle Tab key in editor with dynamic tab size
   const handleKeyDown = (e) => {
     if (e.key === 'Tab') {
       e.preventDefault();
       const start = e.target.selectionStart;
       const end = e.target.selectionEnd;
-      const newText = text.substring(0, start) + '  ' + text.substring(end);
+      const spaces = ' '.repeat(tabSize);
+      const newText = text.substring(0, start) + spaces + text.substring(end);
       setText(newText);
 
       // Reset cursor position after React update
       setTimeout(() => {
         if (textareaRef.current) {
-          textareaRef.current.selectionStart = textareaRef.current.selectionEnd = start + 2;
+          textareaRef.current.selectionStart = textareaRef.current.selectionEnd = start + tabSize;
         }
       }, 0);
     }
@@ -43,7 +44,7 @@ export default function Scratchpad({ text, setText, isPreview }) {
         <div className="textarea-wrapper">
           <textarea
             ref={textareaRef}
-            className="scratchpad-textarea"
+            className={`scratchpad-textarea ${!wordWrap ? 'nowrap' : ''}`}
             value={text}
             onChange={(e) => setText(e.target.value)}
             onKeyDown={handleKeyDown}
